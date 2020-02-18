@@ -54,8 +54,8 @@ class DummyClass extends Model
     public static function getStatusOptions() : array
     {
         return [
-            static::PUBLISHED => trans('admin.published'),
-            static::DRAFT => trans('admin.draft'),
+            static::PUBLISHED => trans('starter.published'),
+            static::DRAFT => trans('starter.draft'),
         ];
     }
     /*

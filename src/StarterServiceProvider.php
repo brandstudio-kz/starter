@@ -15,11 +15,12 @@ class StarterServiceProvider extends ServiceProvider
 
     public function boot()
     {
-
+        $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'brandstudio');
     }
 
     public function register()
     {
         $this->commands($this->commands);
     }
+
 }
