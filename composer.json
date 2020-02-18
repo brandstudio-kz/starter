@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "BrandStudio\\Starter\\": "src"
+            "BrandStudio\\Starter\\": "packages/BrandStudio/starter/src"
         }
     },
     "minimum-stability": "dev",
