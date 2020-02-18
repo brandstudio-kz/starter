@@ -22,5 +22,4 @@ class StarterServiceProvider extends ServiceProvider
     {
         $this->commands($this->commands);
     }
-
 }
