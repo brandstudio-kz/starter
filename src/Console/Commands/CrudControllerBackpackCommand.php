@@ -2,12 +2,14 @@
 
 namespace BrandStudio\Starter\Console\Commands;
 
-use Backpack\Generators\Console\Commands\CrudControllerBackpackCommand as ParentCrudController;
+use Backpack\Generators\Console\Commands\CrudControllerBackpackCommand;
 
-class CrudControllerBackpackCommand extends ParentCrudController
+class CreateController extends CrudControllerBackpackCommand
 {
+
     protected function getStub()
     {
-        return __DIR__.'/../stubs/crud-controller.stub';
+        return config('starter.stubs_dir').'crud-controller.stub';
     }
+
 }

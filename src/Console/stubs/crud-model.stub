@@ -2,28 +2,24 @@
 
 namespace DummyNamespace;
 
-use Illuminate\Database\Eloquent\Model;
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use BrandStudio\Starter\Models\Model;
 
 class DummyClass extends Model
 {
-    use CrudTrait;
 
     /*
     |--------------------------------------------------------------------------
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
     */
-    const PUBLISHED = 1;
-    const DRAFT = 0;
-
     protected $table = 'DummyTable';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = ['status'];
+    // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+    protected $image_fields = ['seo_image'];
 
     /*
     |--------------------------------------------------------------------------
@@ -42,22 +38,13 @@ class DummyClass extends Model
     | SCOPES
     |--------------------------------------------------------------------------
     */
-    public function scopeActive($query)
-    {
-        $query->where('status', static::PUBLISHED);
-    }
+
     /*
     |--------------------------------------------------------------------------
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-    public static function getStatusOptions() : array
-    {
-        return [
-            static::PUBLISHED => trans('starter.published'),
-            static::DRAFT => trans('starter.draft'),
-        ];
-    }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

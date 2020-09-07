@@ -2,61 +2,34 @@
 
 namespace DummyNamespace;
 
-use App\Http\Requests\DummyClassRequest;
-use Backpack\CRUD\app\Http\Controllers\CrudController;
+use BrandStudio\Starter\Http\Controllers\DefaultCrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+
+use App\Http\Requests\DummyClassRequest;
 use App\Models\DummyClass;
 
-class DummyClassCrudController extends CrudController
+class DummyClassCrudController extends DefaultCrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+
+    protected $class = DummyClass::class;
+    protected $requestClass = DummyClassRequest::class;
 
     public function setup()
     {
-        $this->crud->setModel(DummyClass::class);
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/dummy_class');
-        $this->crud->setEntityNameStrings(trans_choice('dummy_class', 1), trans_choice('DummyTable', 2));
-        $this->crud->addFilter([
-            'name' => 'status',
-            'type' => 'dropdown',
-            'label' => trans('brandstudio::starter.status'),
-        ], DummyClass::getStatusOptions(), function ($value) {
-            $this->crud->addClause('where', 'status', $value);
-        });
+        parent::setup();
+
     }
 
     protected function setupListOperation()
     {
-        $this->crud->addColumn([
-            'name' => 'status',
-            'label' => trans('starter.status'),
-            'type' => 'check',
-            'labels' => [
-                'checked' => trans('starter.published'),
-                'unchecked' => trans('starter.draft'),
-            ],
-        ]);
+        //
     }
 
     protected function setupCreateOperation()
     {
-        $this->crud->setValidation(DummyClassRequest::class);
+        parent::setupCreateOperation();
 
-        $this->crud->addField([
-            'name' => 'status',
-            'label' => trans('starter.status'),
-            'type' => 'select2_from_array',
-            'options' => DummyClass::getStatusOptions(),
-            'default' => DummyClass::PUBLISHED,
-        ]);
+
     }
 
-    protected function setupUpdateOperation()
-    {
-        $this->setupCreateOperation();
-    }
 }
