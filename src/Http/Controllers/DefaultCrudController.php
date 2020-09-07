@@ -20,7 +20,7 @@ class DefaultCrudController extends CrudController
     {
         $this->crud->setModel($this->class);
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/'.strtolower(class_basename($this->class)));
-        $this->crud->setEntityNameStrings(trans_choice((new $this->class)->getTable(), 1), trans_choice((new $this->class)->getTable(), 2));
+        $this->crud->setEntityNameStrings(trans_choice('admin.'.(new $this->class)->getTable(), 1), trans_choice('admin.'.(new $this->class)->getTable(), 2));
     }
 
     protected function setupFilters()
