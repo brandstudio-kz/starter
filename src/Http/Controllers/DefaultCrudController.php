@@ -3,6 +3,7 @@
 namespace BrandStudio\Starter\Http\Controllers;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Str;
 
 class DefaultCrudController extends CrudController
