@@ -24,17 +24,22 @@ class Model extends OriginalModel implements Publishable, Identifiable
         ];
     }
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
-
     public function getSlugOrNameAttribute()
     {
         if ($this->slug) {
             return $this->slug;
         }
         return $this->identifiableName;
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->where($field ?? $this->getRouteKeyName(), $value)->beforeRouteBinding($value, $field)->firstOrFail();
     }
 
 }
