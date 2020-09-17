@@ -13,4 +13,28 @@ class Model extends OriginalModel implements Publishable, Identifiable
     use \BrandStudio\Publishable\Traits\Publishable;
     use \BrandStudio\Identifiable\Traits\Identifiable;
 
+
+    public function sluggable() : array
+    {
+        return [
+            'slug' => [
+                'source' => 'slug_or_name',
+                'onUpdate' => true,
+            ],
+        ];
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function getSlugOrNameAttribute()
+    {
+        if ($this->slug) {
+            return $this->slug;
+        }
+        return $this->identifiableName;
+    }
+
 }
